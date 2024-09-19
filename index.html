@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>cgcristi.xyz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('a.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            cursor: url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><circle cx="8" cy="8" r="4" fill="rgba(128, 128, 128, 0.5)" /></svg>), auto;
+
+        }
+
+        .container {
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            padding: 30px;
+            width: 80%;
+            max-width: 900px;
+            color: white;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #pfp {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+        }
+
+        .lanyard {
+            width: 100%;
+            max-width: 410px;
+            margin-bottom: 10px;
+        }
+
+        .quick-info {
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 0 20px;
+        }
+
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .section-links {
+            align-self: flex-end;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section-links a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 12px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .section-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .center-section {
+            flex: 3;
+            padding: 0 20px;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+a {
+    color: #0066ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #3399ff;
+}
+        #github {
+            padding: 20px;
+        }
+
+        #github-repos, #github-stats {
+            margin-bottom: 20px;
+        }
+
+        .repo-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            max-width: 300px;
+            max-height: 190px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .repo-item p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .repo-item a {
+            color: #ff66cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .repo-item a:hover {
+            color: #ff99cc;
+        }
+
+        .stats-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+
+        #spotify {
+            padding: 20px;
+        }
+
+        #spotify-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 8px;
+            max-width: 300px;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .spotify-status {
+            font-size: 14px;
+            color: #ff66cc;
+        }
+
+        .cursor-trail {
+  position: absolute;
+  pointer-events: none;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(128, 128, 128, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  animation: trailFade 1s infinite;
+}
+
+@keyframes trailFade {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+    </style>
+</head>
+<body>
+<script src="./oneko.js"></script>
+    <div class="container">
+        <div class="left-section">
+            <img src="JvP.png" alt="CGCristi's Profile Picture" id="pfp">
+            <h2>CGCristi</h2>
+            <div class="quick-info">
+                <p>Making random apps<br>that no one will use @ <a href="https://github.com/realcgcristi">GitHub</a></p>
+            </div>
+        </div>
+
+
+        <div class="divider"></div>
+        <div class="center-section">
+            <div id="about-me" class="content active">
+                <h1>About Me</h1>
+                <p>Hi, I'm CGCristi. I am a 13-year-old developer. I can code in HTML, C++, C#, Python, JavaScript, Next.js, Node.js, Golang, Kotlin, and more.</p>
+                <img class="lanyard" src="https://lanyard.cnrad.dev/api/680823919338717224" alt="Discord Lanyard"/>
+            </div>
+            <div id="projects" class="content">
+                <h1>My Projects:</h1>
+                <h2>aCode</h2>
+                <p>aCode, a simple and intuitive code editor. <a href="https://github.com/realcgcristi/aCode" class="button">View on GitHub</a></p>
+                <h2>browse.cgcristi.xyz</h2>
+                <p><a href="https://browse.cgcristi.xyz" class="button">browse.cgcristi.xyz</a> is a fast, privacy-first search engine.</p>
+                <h2>StreamFlare</h2>
+                <p>StreamFlare, a simple YouTube video downloader. No ads, fast downloads.</p>
+                <p><a href="https://github.com/realcgcristi/StreamFlare" class="button">StreamFlare Terminal</a></p>
+                <p><a href="https://github.com/realcgcristi/StreamFlareUI" class="button">StreamFlare UI</a></p>
+            </div>
+
+
+
+  <div id="hire-me" class="content">
+    <h2>Hire Me</h2>
+    <p>I'm available to hire.</p>
+    <p>Here are some options: Website Design (HTML+CSS), Coding an app in a specific language (JS, C++, etc.), etc.</p>
+    <p>We can discuss more by email: hire-me@cgcristi.xyz</p>
+    <p>I will keep prices very low, for simple jobs even free  (mostly everything will be free - im bored) :)  </p>
+ </div>
+
+            <div id="social" class="content">
+                <h1>Social</h1>
+                <p>Email: <a href="mailto:cgcristi@cgcristi.xyz" class="button">cgcristi@cgcristi.xyz</a></p>
+                <p>Snapchat: <a href="https://www.snapchat.com/add/cgcristi" class="button" target="_blank"> Snapchat</a></p>
+                <p>Discord: <a href="https://discord.gg/MkfaWxm6PK" class="button" target="_blank">Discord</a></p>
+            </div>
+            <div id="contact" class="content">
+                <h1>Contact</h1>
+                <p>Email: <a href="mailto:cgcristi@cgcristi.xyz" class="button">cgcristi@cgcristi.xyz</a></p>
+                <p>Phone: <span class="button">+1 888 427 2578</span></p>
+            </div>
+            <div id="github" class="content">
+                <h1>GitHub Overview</h1>
+                <div id="github-repos">
+                    <h2>Featured Repositories</h2>
+                    <div id="pinned-repos"></div>
+                </div>
+                <div id="github-stats">
+                    <h2>GitHub Stats</h2>
+                    <img src="https://github-readme-stats.vercel.app/api?username=realcgcristi&show_icons=true&theme=radical" alt="GitHub stats" width=100%/>
+                    <img src="https://github-profile-trophy.vercel.app/?username=realcgcristi&theme=radical" alt="GitHub Trophies" width="140%"/>
+
+                </div>
+            </div>
+            <div id="legacy" class="content">
+                <h1>Legacy</h1>
+                <p>Legacy Version, the old HTML file, can be found at: <a href="https://cgcristi.xyz/old/" class="button">https://cgcristi.xyz/old/</a></p>
+            </div>
+            <div id="spotify" class="content">
+                <h1>Spotify Status</h1>
+                <div id="spotify-info">
+                    <img id="spotify-artwork" src="" alt="Spotify Artwork" style="max-width: 100%; border-radius: 8px;">
+                    <p id="status-message">Loading Spotify status...</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="section-links">
+                <a href="#" onclick="showContent('about-me')">
+                    <i class="fa fa-user"></i> About Me
+                </a>
+                <a href="#" onclick="showContent('projects')">
+                    <i class="fa fa-code"></i> Projects
+                </a>
+                <a href="#" onclick="showContent('social')">
+                    <i class="fa fa-network-wired"></i> Socials
+                </a>
+                <a href="#" onclick="showContent('contact')">
+                    <i class="fa fa-envelope"></i> Contact
+                </a>
+                <a href="#" onclick="showContent('legacy')">
+                    <i class="fa fa-archive"></i> Legacy
+                </a>
+                <a href="#" onclick="showContent('github')">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+
+  <a href="#" onclick="showContent('hire-me')">
+    <i class="fa fa-briefcase"></i> Hire Me
+  </a>
+</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showContent(sectionId) {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            fetch('https://lanyard.cnrad.dev/api/680823919338717224')
+                .then(response => response.json())
+                .then(data => {
+                    const spotifyData = data.data.spotify;
+                    
+                    if (spotifyData) {
+                        const statusMessage = `${spotifyData.song} by ${spotifyData.artist}`;
+                        const spotifyArtwork = spotifyData.album_art_url;
+
+                        document.getElementById('status-message').textContent = statusMessage;
+                        document.getElementById('spotify-artwork').src = spotifyArtwork;
+                        document.getElementById('spotify-artwork').alt = statusMessage;
+                    } else {
+                        document.getElementById('status-message').textContent = 'Not playing anything...';
+                        document.getElementById('spotify-artwork').src = '';
+                        document.getElementById('spotify-artwork').alt = 'No song playing';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching Spotify data:', error);
+                    document.getElementById('status-message').textContent = 'Error loading data';
+                    document.getElementById('spotify-artwork').src = '';
+                    document.getElementById('spotify-artwork').alt = 'Error loading data';
+                });
+
+
+            const pinnedReposContainer = document.getElementById('pinned-repos');
+            const pinnedRepos = [
+                {
+                    name: 'aCode',
+                    description: 'A simple and intuitive code editor.',
+                    url: 'https://github.com/realcgcristi/aCode'
+                },
+                {
+                    name: 'StreamFlareUI',
+                    description: 'User Interface for StreamFlare.',
+                    url: 'https://github.com/realcgcristi/StreamFlareUI'
+                },
+                {
+                    name: 'StreamFlare',
+                    description: 'A simple YouTube video downloader.',
+                    url: 'https://github.com/realcgcristi/StreamFlare'
+                },
+                {
+                    name: 'aScraper',
+                    description: 'A web scraping tool.',
+                    url: 'https://github.com/realcgcristi/aScraper'
+                },
+                {
+                    name: 'ByteDecode',
+                    description: 'A tool for decoding/encoding.',
+                    url: 'https://github.com/realcgcristi/ByteDecode'
+                }
+            ];
+
+            pinnedRepos.forEach(repo => {
+                const repoElement = document.createElement('div');
+                repoElement.classList.add('repo-item');
+                repoElement.innerHTML = `
+                    <a href="${repo.url}" target="_blank">${repo.name}</a>
+                    <p>${repo.description}</p>
+                `;
+                pinnedReposContainer.appendChild(repoElement);
+            });
+
+            const statsContainer = document.getElementById('stats-content');
+            const username = 'realcgcristi';
+
+            fetch(`https://api.github.com/users/${username}`)
+                .then(response => response.json())
+                .then(data => {
+                    const statsHTML = `
+                        <div class="stats-item">
+                            <strong>Public Repositories:</strong> ${data.public_repos}
+                        </div>
+                        <div class="stats-item">
+                            <strong>Followers:</strong> ${data.followers}
+                        </div>
+                        <div class="stats-item">
+                            <strong>Following:</strong> ${data.following}
+                        </div>
+                    `;
+                    statsContainer.innerHTML = statsHTML;
+                })
+                .catch(error => {
+                    statsContainer.innerHTML = '<p>Failed to load GitHub stats.</p>';
+                    console.error('Error fetching GitHub stats:', error);
+                });
+        });
+
+    </script>
+</body>
+</html>
