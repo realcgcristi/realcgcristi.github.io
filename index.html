@@ -5,19 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>cgcristi.xyz</title>
+    <meta property="og:title" content="cgcristi.xyz" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cgcristi.xyz" />
+    <meta property="og:image" content="https://cgcristi.xyz/logo.png" />
+    <meta property="og:description" content="Dev from Romania. Making things work (many times with janky code). Always learning, always building." />
+    <meta property="og:site_name" content="cgcristi.xyz" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #5E4B8C;
+            --secondary-color: #FF66CC;
+            --bg-color: #1a1a2e;
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background: url('a.png') no-repeat center center fixed;
             background-size: cover;
             font-family: 'Poppins', sans-serif;
-            cursor: url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><circle cx="8" cy="8" r="4" fill="rgba(128, 128, 128, 0.5)" /></svg>), auto;
+            color: var(--text-color);
+        }
 
+        html {
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -25,14 +44,9 @@
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 25px;
             padding: 30px;
-            width: 80%;
-            max-width: 900px;
-            color: white;
+            width: 90%;
+            max-width: 1200px;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        p {
-            font-size: 18px;
         }
 
         .left-section {
@@ -48,6 +62,11 @@
             width: 120px;
             height: 120px;
             margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        #pfp:hover {
+            transform: scale(1.1);
         }
 
         .lanyard {
@@ -65,6 +84,13 @@
             margin: 0 20px;
         }
 
+        .center-section {
+            flex: 3;
+            padding: 0 20px;
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+
         .right-section {
             flex: 1;
             display: flex;
@@ -73,7 +99,6 @@
         }
 
         .section-links {
-            align-self: flex-end;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -81,22 +106,23 @@
 
         .section-links a {
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             text-decoration: none;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
+            background-color: var(--card-bg);
+            padding: 10px 16px;
             border-radius: 12px;
-            text-align: center;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
         }
 
         .section-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: var(--primary-color);
+            transform: translateX(5px);
         }
 
-        .center-section {
-            flex: 3;
-            padding: 0 20px;
+        .section-links a i {
+            margin-right: 10px;
         }
 
         .content {
@@ -105,122 +131,378 @@
 
         .content.active {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
 
-a {
-    color: #0066ff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #3399ff;
-}
-        #github {
-            padding: 20px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        #github-repos, #github-stats {
-            margin-bottom: 20px;
+        h1, h2 {
+            color: var(--secondary-color);
         }
 
-        .repo-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 12px 16px;
-            border-radius: 8px;
+        .repo-item, .stats-item {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
             margin-bottom: 15px;
-            font-size: 14px;
-            max-width: 300px;
-            max-height: 190px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
-        .repo-item p {
-            margin: 0;
-            font-size: 14px;
-            line-height: 1.4;
+        .repo-item:hover, .stats-item:hover {
+            transform: translateY(-5px);
         }
 
-        .repo-item a {
-            color: #ff66cc;
+        .repo-item a, .stats-item a {
+            color: var(--secondary-color);
             text-decoration: none;
             font-weight: bold;
         }
 
-        .repo-item a:hover {
-            color: #ff99cc;
+        #spotify-info {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
         }
 
-        .stats-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 8px;
+        #spotify-artwork {
+            max-width: 100%;
             border-radius: 8px;
             margin-bottom: 10px;
-            font-size: 14px;
-            max-width: 300px;
-            word-wrap: break-word;
         }
 
-        #spotify {
-            padding: 20px;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
+
+        .skill-item {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .divider {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                margin: 20px 0;
+            }
+
+            .center-section {
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+
+    /* Add this to your existing CSS */
+    a {
+        color: #FF66CC;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #FF99CC;
+    }
+
+    /* Update the project card styles */
+    .project-card {
+        background-color: var(--card-bg);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .project-card h3 {
+        margin-top: 0;
+        color: #FF66CC;
+    }
+
+    .project-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .project-stats span {
+        display: flex;
+        align-items: center;
+    }
+
+    .project-stats i {
+        margin-right: 5px;
+    }
+
+    .project-link {
+        display: inline-block;
+        background-color: #FF66CC;
+        color: var(--bg-color);
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .project-link:hover {
+        background-color: #FF99CC;
+    }
+
+        /* Typewriter styles */
+        .typewriter {
+            display: inline-block;
+            text-align: center;
+            font-size: 1.5em;
+            border-right: 0.1em solid var(--secondary-color); /* Simulating the caret */
+            overflow: hidden; /* Ensures the text stays in the container */
+            white-space: nowrap; /* Prevents text wrapping */
+            animation: blink-caret 0.75s step-end infinite; /* Blinking cursor */
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--secondary-color); }
+        }
+.social-icons a {
+    font-size: 2.5em; /* Adjust the size of the icons */
+    margin: 0 15px; /* Space between icons: left and right margin */
+    color: #ff69b4; /* Pink color for icons (you can adjust this to your preferred shade) */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.social-icons a:hover {
+    color: #ff1493; /* Darker pink on hover (optional) */
+}
 
         #spotify-info {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 12px 16px;
-            border-radius: 8px;
-            max-width: 300px;
-            font-size: 14px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        #spotify-artwork {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        #spotify-details {
+            flex-grow: 1;
+        }
+
+        #song-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        #artist-name {
+            font-size: 1em;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        #progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        #progress {
+            height: 100%;
+            background-color: var(--secondary-color);
+            width: 0%;
+            transition: width 1s linear;
+        }
+
+        #time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        #not-playing-message {
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            margin-top: 20px;
         }
 
-        .spotify-status {
+        #last-played {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-top: 10px;
+        }
+
+        #blog-section {
+            width: 30%; 
+            padding: 20px;
+            background: #1e1e1e;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto; 
+        }
+
+ 
+        #main-content {
+            flex-grow: 1; 
+            padding: 20px;
+            background: #121212; 
+        }
+
+        #blog-section h2 {
+            margin-bottom: 20px;
+            color: #ffffff; 
+            font-weight: 500; 
+        }
+
+        .blog-post {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px; 
+            background: #1f1f1f; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s; 
+        }
+
+        .blog-post:hover {
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); 
+        }
+
+        .blog-post h3 {
+            margin: 10px 0 5px;
+            color: #ffffff;
+            font-weight: 600; 
+        }
+
+        .blog-date {
             font-size: 14px;
-            color: #ff66cc;
+            color: #aaaaaa; 
+            margin-bottom: 10px;
         }
 
-        .cursor-trail {
-  position: absolute;
-  pointer-events: none;
-  width: 10px;
-  height: 10px;
-  background-color: rgba(128, 128, 128, 0.2);
-  border-radius: 50%;
-  opacity: 0;
-  animation: trailFade 1s infinite;
-}
+        .blog-image {
+            width: 100%; 
+            max-width: 157px; 
+            height: auto; 
+            border-radius: 10px; 
+            margin-bottom: 10px; 
+        }
 
-@keyframes trailFade {
-  0% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-  }
-}
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #6200ea; 
+            color: #ffffff; 
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .read-more:hover {
+            background: #3700b3; 
+        }
+
     </style>
 </head>
 <body>
 <script src="./oneko.js"></script>
     <div class="container">
         <div class="left-section">
-            <img src="JvP.png" alt="CGCristi's Profile Picture" id="pfp">
+            <img src="logo.png" alt="pfp" id="pfp">
             <h2>CGCristi</h2>
             <div class="quick-info">
                 <p>Making random apps<br>that no one will use @ <a href="https://github.com/realcgcristi">GitHub</a></p>
             </div>
         </div>
 
-
         <div class="divider"></div>
+
         <div class="center-section">
-            <div id="about-me" class="content active">
-                <h1>About Me</h1>
-                <p>Hi, I'm CGCristi. I am a 13-year-old developer. I can code in HTML, C++, C#, Python, JavaScript, Next.js, Node.js, Golang, Kotlin, and more.</p>
-                <img class="lanyard" src="https://lanyard.cnrad.dev/api/680823919338717224" alt="Discord Lanyard"/>
+<div id="about-me" class="content active">
+    <h1>About Me</h1>
+    <div class="typewriter">
+        <span class="typewriter-text"></span>
+    </div>
+</br>
+</br>           
+
+    <img id="lanyard" class="lanyard" src="https://lanyard.cnrad.dev/api/680823919338717224?showDisplayName=true&hideClan=true&hideBadges=true&showActivity=true&bg=5E4B8C" alt="Discord Lanyard" loading="lazy"/>
+ </br>
+</br>
+    <div id="spotify-info" style="display: none;">
+        <img id="spotify-artwork" src="" alt="Spotify Artwork">
+        <div id="spotify-details">
+            <div id="song-title"></div>
+            <div id="artist-name"></div>
+            <div id="progress-bar"><div id="progress"></div></div>
+            <div id="time-info">
+                <span id="current-time">0:00</span>
+                <span id="total-time">0:00</span>
             </div>
+        </div>
+    </div>
+    <div id="not-playing-message" style="display: none;">
+        <p><i><b>Spotify Status: Not listening to anything...</b></i></p>
+    </div>
+
+</div>
+
+<script>
+    const userId = "680823919338717224";
+
+    function refreshLanyard() {
+        // Create a new URL for the image
+        const newSrc = `https://lanyard.cnrad.dev/api/${userId}?showDisplayName=true&hideClan=true&hideBadges=true&showActivity=true&bg=5E4B8C`;
+        const lanyardImg = document.getElementById('lanyard');
+        lanyardImg.src = newSrc + '&t=' + new Date().getTime();
+    }
+
+
+    setInterval(refreshLanyard, 1000);
+</script>
+
+
             <div id="projects" class="content">
                 <h1>My Projects:</h1>
                 <h2>aCode</h2>
@@ -229,31 +511,43 @@ a:hover {
                 <p><a href="https://browse.cgcristi.xyz" class="button">browse.cgcristi.xyz</a> is a fast, privacy-first search engine.</p>
                 <h2>StreamFlare</h2>
                 <p>StreamFlare, a simple YouTube video downloader. No ads, fast downloads.</p>
-                <p><a href="https://github.com/realcgcristi/StreamFlare" class="button">StreamFlare Terminal</a></p>
-                <p><a href="https://github.com/realcgcristi/StreamFlareUI" class="button">StreamFlare UI</a></p>
+                <p><a href="https://github.com/realcgcristi/StreamFlare" class="button">StreamFlare Terminal<a>     |     <a href="https://github.com/realcgcristi/StreamFlareUI" class="button">StreamFlare UI</a></p>
+                <h2>aCloud (sxbin.gay)</h2>
+                <p>Started as a joke, got into a real thing. Me and <a href="https://spitkov.hu">spitkov</a> made it. It is a pastebin/file uploading platform. <a href="sxbin.gay">Visit it here</a>
+                <h2>aTweet</h2>
+                <p>Old (but bad) twitter. This is a failed project mostly... <a href="https://atweet.cgcristi.xyz">Visit it here</a></p>       
+     </div>
+            <div id="hire-me" class="content">
+                <h2>Hire Me</h2>
+                <p>I'm available to hire.</p>
+                <p>Here are some options: Website Design (HTML+CSS), Coding an app in a specific language (JS, C++, etc.), etc.</p>
+                <p>We can discuss more by email: <a href="mailto:cgcristi@cgcristi.xyz"><i class="fa fa-envelope"></i> cgcristi@cgcristi.xyz</a></p>
+                <p>I will keep prices very low, for simple jobs even free (mostly everything will be free - I'm bored) :)</p>
             </div>
 
-
-
-  <div id="hire-me" class="content">
-    <h2>Hire Me</h2>
-    <p>I'm available to hire.</p>
-    <p>Here are some options: Website Design (HTML+CSS), Coding an app in a specific language (JS, C++, etc.), etc.</p>
-    <p>We can discuss more by email: hire-me@cgcristi.xyz</p>
-    <p>I will keep prices very low, for simple jobs even free  (mostly everything will be free - im bored) :)  </p>
- </div>
-
-            <div id="social" class="content">
-                <h1>Social</h1>
-                <p>Email: <a href="mailto:cgcristi@cgcristi.xyz" class="button">cgcristi@cgcristi.xyz</a></p>
-                <p>Snapchat: <a href="https://www.snapchat.com/add/cgcristi" class="button" target="_blank"> Snapchat</a></p>
-                <p>Discord: <a href="https://discord.gg/MkfaWxm6PK" class="button" target="_blank">Discord</a></p>
-            </div>
-            <div id="contact" class="content">
+<div id="social" class="content">
+    <h1>Socials</h1>
+    <p class="social-icons">
+        <a href="mailto:cgcristi@cgcristi.xyz" title="Email">
+            <i class="fa fa-envelope"></i>
+        </a>
+        <a href="https://www.snapchat.com/add/cgcristi" target="_blank" title="Snapchat">
+            <i class="fab fa-snapchat-ghost"></i>
+        </a>
+        <a href="https://discord.gg/F8ZMBc7ENA" target="_blank" title="Discord">
+            <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://tiktok.com/@cgcristi.backup" target="_blank" title="TikTok">
+            <i class="fab fa-tiktok"></i>
+        </a>
+    </p>
+</div>
+         <div id="contact" class="content">
                 <h1>Contact</h1>
-                <p>Email: <a href="mailto:cgcristi@cgcristi.xyz" class="button">cgcristi@cgcristi.xyz</a></p>
-                <p>Phone: <span class="button">+1 888 427 2578</span></p>
+    <p>Email: <a href="mailto:cgcristi@cgcristi.xyz"><i class="fa fa-envelope"></i> cgcristi@cgcristi.xyz</a></p>
+                <p>Phone: <span>+1 888 427 2578</span></p>
             </div>
+
             <div id="github" class="content">
                 <h1>GitHub Overview</h1>
                 <div id="github-repos">
@@ -262,23 +556,173 @@ a:hover {
                 </div>
                 <div id="github-stats">
                     <h2>GitHub Stats</h2>
-                    <img src="https://github-readme-stats.vercel.app/api?username=realcgcristi&show_icons=true&theme=radical" alt="GitHub stats" width=100%/>
-                    <img src="https://github-profile-trophy.vercel.app/?username=realcgcristi&theme=radical" alt="GitHub Trophies" width="140%"/>
-
+                    <img src="https://github-readme-stats.vercel.app/api?username=realcgcristi&show_icons=true&theme=radical" alt="GitHub stats" width="100%"/>
+                    <img src="https://github-profile-trophy.vercel.app/?username=realcgcristi&theme=radical" alt="GitHub Trophies" width="100%"/>
                 </div>
             </div>
+
             <div id="legacy" class="content">
                 <h1>Legacy</h1>
-                <p>Legacy Version, the old HTML file, can be found at: <a href="https://cgcristi.xyz/old/" class="button">https://cgcristi.xyz/old/</a></p>
+                <p>Legacy Version, the old HTML file, can be found at: <a href="https://cgcristi.xyz/old/">https://cgcristi.xyz/old/</a></p>
             </div>
-            <div id="spotify" class="content">
-                <h1>Spotify Status</h1>
-                <div id="spotify-info">
-                    <img id="spotify-artwork" src="" alt="Spotify Artwork" style="max-width: 100%; border-radius: 8px;">
-                    <p id="status-message">Loading Spotify status...</p>
+
+
+
+
+
+
+<div id="blogs" class="content">
+    <h2>Blogs</h2>
+    <div class="blog-post">
+        <img src="blogs.png" alt="image" class="blog-image">
+        <h3>Blogs!</h3>
+        <p class="blog-date">Published on: <span>September 27th, 2024</span></p>
+        <p>Blogs have been added, useless feature, ik that. but here we are!</p>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function formatTime(ms) {
+        const seconds = Math.floor(ms / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+
+    function updateSpotifyStatus() {
+        const corsProxy = 'https://corsproxy.io/?';
+        const lanyardUrl = 'https://api.lanyard.rest/v1/users/680823919338717224';
+
+        fetch(corsProxy + encodeURIComponent(lanyardUrl))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const spotifyData = data.data.spotify;
+                const spotifyInfo = document.getElementById('spotify-info');
+                const notPlayingMessage = document.getElementById('not-playing-message');
+
+                if (spotifyData) {
+                    // Show Spotify info and hide the "Not listening to anything..." message
+                    spotifyInfo.style.display = 'flex';
+                    notPlayingMessage.style.display = 'none';
+
+                    const spotifyArtwork = document.getElementById('spotify-artwork');
+                    const songTitle = document.getElementById('song-title');
+                    const artistName = document.getElementById('artist-name');
+                    const progress = document.getElementById('progress');
+                    const currentTime = document.getElementById('current-time');
+                    const totalTime = document.getElementById('total-time');
+
+                    spotifyArtwork.src = spotifyData.album_art_url;
+                    spotifyArtwork.alt = `${spotifyData.song} by ${spotifyData.artist}`;
+                    songTitle.textContent = spotifyData.song;
+                    artistName.textContent = spotifyData.artist;
+
+                    const elapsed = Date.now() - spotifyData.timestamps.start;
+                    const duration = spotifyData.timestamps.end - spotifyData.timestamps.start;
+                    const progressPercentage = (elapsed / duration) * 100;
+
+                    progress.style.width = `${progressPercentage}%`;
+                    currentTime.textContent = formatTime(elapsed);
+                    totalTime.textContent = formatTime(duration);
+                } else {
+                    // No song is currently playing, show the "Not listening to anything..." message
+                    spotifyInfo.style.display = 'none';
+                    notPlayingMessage.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching Spotify data:', error);
+                document.getElementById('spotify-info').style.display = 'none';
+                document.getElementById('not-playing-message').style.display = 'block';
+            });
+    }
+
+    updateSpotifyStatus();
+    setInterval(updateSpotifyStatus, 1000); // Update every second for smoother progress
+});
+</script>
+
+<div id="spotify" class="content">
+    <h1>Spotify Status:</h1>
+    <div id="spotify-info" style="display: none;">
+        <img id="spotify-artwork" src="" alt="Spotify Artwork">
+        <div id="spotify-details">
+            <div id="song-title"></div>
+            <div id="artist-name"></div>
+            <div id="progress-bar"><div id="progress"></div></div>
+            <div id="time-info">
+                <span id="current-time">0:00</span>
+                <span id="total-time">0:00</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="not-playing-message" style="display: none;">
+        <p><i><b>Not listening to anything...</b></i></p>
+    </div>
+</div>
+
+      <div id="skills" class="content">
+                <h1>Skills</h1>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <i class="fab fa-html5"></i>
+                        <p>HTML</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-css3-alt"></i>
+                        <p>CSS</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-js"></i>
+                        <p>JavaScript</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-python"></i>
+                        <p>Python</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-cuttlefish"></i>
+                        <p>C++</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-microsoft"></i>
+                        <p>C#</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-node-js"></i>
+                        <p>Node.js</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-react"></i>
+                        <p>Next.js</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-golang"></i>
+                        <p>Golang</p>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-android"></i>
+                        <p>Kotlin</p>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="right-section">
             <div class="section-links">
                 <a href="#" onclick="showContent('about-me')">
@@ -299,11 +743,15 @@ a:hover {
                 <a href="#" onclick="showContent('github')">
                     <i class="fab fa-github"></i> GitHub
                 </a>
-
-  <a href="#" onclick="showContent('hire-me')">
-    <i class="fa fa-briefcase"></i> Hire Me
-  </a>
-</div>
+                <a href="#" onclick="showContent('hire-me')">
+                    <i class="fa fa-briefcase"></i> Hire Me
+                </a>
+                <a href="#" onclick="showContent('skills')">
+                    <i class="fa fa-cogs"></i> Skills
+                </a>
+                <a href="#" onclick="showContent('blogs')">
+                    <i class="fas fa-newspaper"></i> Blogs
+                </a>
             </div>
         </div>
     </div>
@@ -315,97 +763,223 @@ a:hover {
         }
 
         document.addEventListener("DOMContentLoaded", function() {
+            let lastTrackId = null;
+            let lastPlayedSong = null;
 
-            fetch('https://lanyard.cnrad.dev/api/680823919338717224')
-                .then(response => response.json())
-                .then(data => {
-                    const spotifyData = data.data.spotify;
-                    
-                    if (spotifyData) {
-                        const statusMessage = `${spotifyData.song} by ${spotifyData.artist}`;
-                        const spotifyArtwork = spotifyData.album_art_url;
+            function formatTime(ms) {
+                const seconds = Math.floor(ms / 1000);
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }
 
-                        document.getElementById('status-message').textContent = statusMessage;
-                        document.getElementById('spotify-artwork').src = spotifyArtwork;
-                        document.getElementById('spotify-artwork').alt = statusMessage;
-                    } else {
-                        document.getElementById('status-message').textContent = 'Not playing anything...';
-                        document.getElementById('spotify-artwork').src = '';
-                        document.getElementById('spotify-artwork').alt = 'No song playing';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching Spotify data:', error);
-                    document.getElementById('status-message').textContent = 'Error loading data';
-                    document.getElementById('spotify-artwork').src = '';
-                    document.getElementById('spotify-artwork').alt = 'Error loading data';
-                });
+            function updateSpotifyStatus() {
+                const corsProxy = 'https://corsproxy.io/?';
+                const lanyardUrl = 'https://api.lanyard.rest/v1/users/680823919338717224';
+                
+                fetch(corsProxy + encodeURIComponent(lanyardUrl))
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const spotifyData = data.data.spotify;
+                        const spotifyInfo = document.getElementById('spotify-info');
+                        const notPlayingMessage = document.getElementById('not-playing-message');
+                        const lastPlayedElement = document.getElementById('last-played');
+                        
+                        if (spotifyData) {
+                            spotifyInfo.style.display = 'flex';
+                            notPlayingMessage.style.display = 'none';
+                            
+                            const spotifyArtwork = document.getElementById('spotify-artwork');
+                            const songTitle = document.getElementById('song-title');
+                            const artistName = document.getElementById('artist-name');
+                            const progress = document.getElementById('progress');
+                            const currentTime = document.getElementById('current-time');
+                            const totalTime = document.getElementById('total-time');
+
+                            spotifyArtwork.src = spotifyData.album_art_url;
+                            spotifyArtwork.alt = `${spotifyData.song} by ${spotifyData.artist}`;
+                            songTitle.textContent = spotifyData.song;
+                            artistName.textContent = spotifyData.artist;
+
+                            const elapsed = Date.now() - spotifyData.timestamps.start;
+                            const duration = spotifyData.timestamps.end - spotifyData.timestamps.start;
+                            const progressPercentage = (elapsed / duration) * 100;
+                            
+                            progress.style.width = `${progressPercentage}%`;
+                            currentTime.textContent = formatTime(elapsed);
+                            totalTime.textContent = formatTime(duration);
+
+                            if (lastTrackId !== spotifyData.track_id) {
+                                lastTrackId = spotifyData.track_id;
+                                lastPlayedSong = `${spotifyData.song} by ${spotifyData.artist}`;
+                                spotifyInfo.style.animation = 'none';
+                                spotifyInfo.offsetHeight; // Trigger reflow
+                                spotifyInfo.style.animation = 'fadeIn 0.5s ease';
+                            }
+                        } else {
+                            spotifyInfo.style.display = 'none';
+                            notPlayingMessage.style.display = 'block';
+                            if (lastPlayedSong) {
+                                lastPlayedElement.textContent = `Last song played: ${lastPlayedSong}`;
+                            } else {
+                                lastPlayedElement.textContent = 'No recent playback history available.';
+                            }
+                            lastTrackId = null;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching Spotify data:', error);
+                        document.getElementById('spotify-info').style.display = 'none';
+                        document.getElementById('not-playing-message').style.display = 'block';
+                        document.getElementById('last-played').textContent = 'Unable to fetch Spotify data.';
+                    });
+            }
+
+            updateSpotifyStatus();
+            setInterval(updateSpotifyStatus, 1000); // Update every second for smoother progress
 
 
+// Typewriter effect function
+function typeWriter(text, element, speed) {
+    let i = 0;
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+        } else {
+            // Optionally, you can make it loop or remove the typewriter cursor effect
+        }
+    }
+    typing();
+}
+
+const typewriterText = "Hi. I'm CGCristi. 13-year-old dev.";
+const typewriterElement = document.querySelector(".typewriter-text"); // Select by class
+
+// Start typing the text with a speed of 89 milliseconds
+typeWriter(typewriterText, typewriterElement, 89);
+
+
+
+    // GitHub Pinned Repositories
+    fetch('https://gh-pinned-repos.egoist.dev/?username=realcgcristi')
+        .then(response => response.json())
+        .then(data => {
             const pinnedReposContainer = document.getElementById('pinned-repos');
-            const pinnedRepos = [
-                {
-                    name: 'aCode',
-                    description: 'A simple and intuitive code editor.',
-                    url: 'https://github.com/realcgcristi/aCode'
-                },
-                {
-                    name: 'StreamFlareUI',
-                    description: 'User Interface for StreamFlare.',
-                    url: 'https://github.com/realcgcristi/StreamFlareUI'
-                },
-                {
-                    name: 'StreamFlare',
-                    description: 'A simple YouTube video downloader.',
-                    url: 'https://github.com/realcgcristi/StreamFlare'
-                },
-                {
-                    name: 'aScraper',
-                    description: 'A web scraping tool.',
-                    url: 'https://github.com/realcgcristi/aScraper'
-                },
-                {
-                    name: 'ByteDecode',
-                    description: 'A tool for decoding/encoding.',
-                    url: 'https://github.com/realcgcristi/ByteDecode'
-                }
-            ];
+            pinnedReposContainer.innerHTML = ''; // Clear any existing content
 
-            pinnedRepos.forEach(repo => {
+            data.forEach(repo => {
                 const repoElement = document.createElement('div');
-                repoElement.classList.add('repo-item');
+                repoElement.classList.add('project-card');
                 repoElement.innerHTML = `
-                    <a href="${repo.url}" target="_blank">${repo.name}</a>
-                    <p>${repo.description}</p>
+                    <h3>${repo.repo}</h3>
+                    <p>${repo.description || 'No description available.'}</p>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> ${repo.stars}</span>
+                        <span><i class="fas fa-code-branch"></i> ${repo.forks}</span>
+                    </div>
+                    <a href="https://github.com/${repo.owner}/${repo.repo}" target="_blank" class="project-link">View Project</a>
                 `;
                 pinnedReposContainer.appendChild(repoElement);
             });
-
-            const statsContainer = document.getElementById('stats-content');
-            const username = 'realcgcristi';
-
-            fetch(`https://api.github.com/users/${username}`)
-                .then(response => response.json())
-                .then(data => {
-                    const statsHTML = `
-                        <div class="stats-item">
-                            <strong>Public Repositories:</strong> ${data.public_repos}
-                        </div>
-                        <div class="stats-item">
-                            <strong>Followers:</strong> ${data.followers}
-                        </div>
-                        <div class="stats-item">
-                            <strong>Following:</strong> ${data.following}
-                        </div>
-                    `;
-                    statsContainer.innerHTML = statsHTML;
-                })
-                .catch(error => {
-                    statsContainer.innerHTML = '<p>Failed to load GitHub stats.</p>';
-                    console.error('Error fetching GitHub stats:', error);
-                });
+        })
+        .catch(error => {
+            console.error('Error fetching pinned repositories:', error);
+            document.getElementById('pinned-repos').innerHTML = '<p>Failed to load projects. Please try again later.</p>';
         });
 
-    </script>
-</body>
+    // Function to show content (keep this if you haven't already)
+    function showContent(sectionId) {
+        const contents = document.querySelectorAll('.content');
+        contents.forEach(content => content.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+
+     // GitHub integration
+    const pinnedReposContainer = document.getElementById('pinned-repos');
+    const pinnedRepos = [
+        {
+            name: 'aCode',
+            description: 'A simple and intuitive code editor.',
+            url: 'https://github.com/realcgcristi/aCode'
+        },
+        {
+            name: 'StreamFlareUI',
+            description: 'User Interface for StreamFlare.',
+            url: 'https://github.com/realcgcristi/StreamFlareUI'
+        },
+        {
+            name: 'StreamFlare',
+            description: 'A simple YouTube video downloader.',
+            url: 'https://github.com/realcgcristi/StreamFlare'
+        },
+        {
+            name: 'aScraper',
+            description: 'A web scraping tool.',
+            url: 'https://github.com/realcgcristi/aScraper'
+        },
+        {
+            name: 'ByteDecode',
+            description: 'A tool for decoding/encoding.',
+            url: 'https://github.com/realcgcristi/ByteDecode'
+        }
+    ];
+
+    pinnedRepos.forEach(repo => {
+        const repoElement = document.createElement('div');
+        repoElement.classList.add('repo-item');
+        repoElement.innerHTML = `
+            <h3><a href="${repo.url}" target="_blank">${repo.name}</a></h3>
+            <p>${repo.description}</p>
+        `;
+        pinnedReposContainer.appendChild(repoElement);
+    });
+
+    // Fetch and display GitHub stats
+    fetch('https://api.github.com/users/realcgcristi')
+        .then(response => response.json())
+        .then(data => {
+            const statsContainer = document.getElementById('github-stats');
+            const statsHTML = `
+                <div class="stats-item">
+                    <strong>Public Repositories:</strong> ${data.public_repos}
+                </div>
+                <div class="stats-item">
+                    <strong>Followers:</strong> ${data.followers}
+                </div>
+                <div class="stats-item">
+                    <strong>Following:</strong> ${data.following}
+                </div>
+            `;
+            statsContainer.insertAdjacentHTML('beforeend', statsHTML);
+        })
+        .catch(error => {
+            console.error('Error fetching GitHub stats:', error);
+            document.getElementById('github-stats').innerHTML = '<p>Failed to load GitHub stats.</p>';
+        });
+
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+
+    // Initialize the page with the 'About Me' section active
+    showContent('about-me');
+
+});
+</script>
+<body/>
 </html>
